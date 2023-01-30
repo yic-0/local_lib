@@ -100,7 +100,7 @@ function getMostPopularAuthors(books, authors) {
   };
   books.forEach((book) => {
    if (book.authorId === author.id) {
-    theAuthor.count += book.borrows.length;
+    theAuthor.count += borrowCount(book);
    }
   });
   result.push(theAuthor);
@@ -109,6 +109,11 @@ function getMostPopularAuthors(books, authors) {
   
   
   
+}
+
+//helper function
+function borrowCount(book) {
+  return book.borrows.length;
 }
 
 
