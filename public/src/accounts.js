@@ -26,13 +26,21 @@ accounts.sort((accountA, accountB) =>
 
 
 
-function getTotalNumberOfBorrows(account, books) {
-const accountID = account.id;
-let total = 0;
-  books.forEach(book => book.borrows.forEach(borrow => accountID === borrow.id && total++));
-  return total;
-}
+// function getTotalNumberOfBorrows(account, books) {
+// const accountID = account.id;
+// let total = 0;
+//   books.forEach(book => book.borrows.forEach(borrow => accountID === borrow.id && total++));
+//   return total;
+// }
 
+
+function getTotalNumberOfBorrows(account, books) {
+  const accountId = account.id;
+  return books.reduce((totalBorrowed, { borrows }) => {
+    if (borrows.some((record) => record.id === accountId)) totalBorrowed++;
+    return totalBorrowed;
+  }, 0);
+}
 
 //------------------
 
